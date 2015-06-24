@@ -46,6 +46,8 @@
     [self swizzleDealloc:[UITabBar class]];
     [self swizzleDealloc:[UITableViewCell class]];
     [self swizzleDealloc:[UITableView class]];
+
+    [self swizzle:[UITableViewCell class] methodName:@"setSelected:animated:"];
 }
 
 - (void)swizzleDidMoveToWindow:(Class)class

@@ -30,6 +30,7 @@
 + (void)initWithStylesheet:(NSString*)name;
 + (void)appendStylesheet:(NSString*)name;
 + (void)loadStylesheetByPath:(NSString*)path;
++ (void)loadStylesheetByName:(NSString*)name;
 + (BOOL)reloadStylesheetsOnOrientationChange:(UIInterfaceOrientation)orientation;
 + (BOOL)autoUpdateIsEnabled;
 + (NSString*)autoUpdatePath;
@@ -56,6 +57,7 @@
 + (NSMutableArray*)getGlobalExclusions;
 + (void)setGlobalExclusions:(NSArray*)globalExclusions;
 + (NSString *)stylesheetOrientation;
++ (NSString*)stylesheetName;
 
 @end
 

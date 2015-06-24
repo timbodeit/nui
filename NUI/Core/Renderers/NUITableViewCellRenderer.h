@@ -16,5 +16,6 @@
 
 + (void)render:(UITableViewCell*)cell withClass:(NSString*)className;
 + (void)sizeDidChange:(UITableViewCell*)cell;
++ (void)renderSelectionDependentProperties:(UITableViewCell*)cell selected:(BOOL)selected;
 
 @end

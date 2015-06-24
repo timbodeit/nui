@@ -58,12 +58,12 @@
                                           frame:button.bounds];
         
         if (button.gradientLayer) {
-            [button.layer replaceSublayer:button.gradientLayer with:gradientLayer];
+          [button.layer replaceSublayer:button.gradientLayer with:gradientLayer];
         } else {
-            int backgroundLayerIndex = [button.layer.sublayers count] == 1 ? 0 : 1;
-            [button.layer insertSublayer:gradientLayer atIndex:backgroundLayerIndex];
+          int backgroundLayerIndex = [button.layer.sublayers count] == 1 ? 0 : 1;
+          [button.layer insertSublayer:gradientLayer atIndex:backgroundLayerIndex];
         }
-        
+
         button.gradientLayer = gradientLayer;
     }
     
@@ -153,7 +153,22 @@
     if ([NUISettings hasProperty:@"text-shadow-color-disabled" withClass:className]) {
         [button setTitleShadowColor:[NUISettings getColor:@"text-shadow-color-disabled" withClass:className] forState:UIControlStateDisabled];
     }
-    
+
+    // Set image tint color (by Appdafuer)
+    if ([NUISettings hasProperty:@"image-highlighted-color" withClass:className]) {
+        if (button.imageView.image) {
+            UIColor* imageSelectedColor = [NUISettings getColor:@"image-highlighted-color" withClass:className];
+            [button setImage:[button.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateHighlighted];
+        }
+    }
+
+    if ([NUISettings hasProperty:@"image-selected-color" withClass:className]) {
+        if (button.imageView.image) {
+            UIColor* imageSelectedColor = [NUISettings getColor:@"image-selected-color" withClass:className];
+            [button setImage:[button.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateSelected];
+        }
+    }
+
     // title insets
     if ([NUISettings hasProperty:@"title-insets" withClass:className]) {
         [button setTitleEdgeInsets:[NUISettings getEdgeInsets:@"title-insets" withClass:className]];

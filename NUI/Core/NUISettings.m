@@ -82,6 +82,14 @@ static NUISettings *instance = nil;
     }
 }
 
++ (void)loadStylesheetByName:(NSString*)name
+{
+    instance = [self getInstance];
+    instance.stylesheetName = name;
+    NUIStyleParser *parser = [[NUIStyleParser alloc] init];
+    instance.styles = [parser getStylesFromFile:name];
+}
+
 + (BOOL)reloadStylesheetsOnOrientationChange:(UIInterfaceOrientation)orientation
 {
     instance = [self getInstance];
@@ -303,6 +311,11 @@ static NUISettings *instance = nil;
 + (NSString *)stylesheetOrientationFromInterfaceOrientation:(UIInterfaceOrientation)orientation
 {
     return UIInterfaceOrientationIsLandscape(orientation) ? @"landscape" : @"portrait";
+}
+
++ (NSString*)stylesheetName {
+    instance = [self getInstance];
+    return instance.stylesheetName;
 }
 
 + (NUISettings*)getInstance

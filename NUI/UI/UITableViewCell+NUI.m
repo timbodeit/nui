@@ -45,4 +45,12 @@
     [NUIRenderer performSelector:@selector(sizeDidChangeForTableViewCell:) withObject:self afterDelay:0];
 }
 
+- (void)override_setSelected:(BOOL)selected animated:(BOOL)animated {
+    if (![self.nuiClass isEqualToString:kNUIClassNone]) {
+        [NUIRenderer renderSelectionDependentPropertiesOnTableViewCell:self selected:selected];
+    }
+
+    [self override_setSelected:selected animated:animated];
+}
+
 @end

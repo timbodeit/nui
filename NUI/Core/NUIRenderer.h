@@ -81,6 +81,8 @@
 + (void)renderTableView:(UITableView*)tableView;
 + (void)renderTableView:(UITableView*)tableView withClass:(NSString*)className;
 
++ (void)renderSelectionDependentPropertiesOnTableViewCell:(UITableViewCell*)cell selected:(BOOL)selected;
+
 + (void)renderTableViewCell:(UITableViewCell*)cell;
 + (void)renderTableViewCell:(UITableViewCell*)cell withClass:(NSString*)className;
 
@@ -112,5 +114,7 @@
 + (void)removeOrientationDidChangeObserver:(id)observer;
 
 + (void)setRerenderOnOrientationChange:(BOOL)rerender;
+
++ (void)changeStylesheet:(NSString*)name;
 
 @end
