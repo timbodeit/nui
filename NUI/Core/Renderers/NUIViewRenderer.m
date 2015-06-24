@@ -19,8 +19,12 @@
             [view setBackgroundColor: [NUISettings getColorFromImage:@"background-image" withClass: className]];
         }
     } else if ([NUISettings hasProperty:@"background-color" withClass:className]) {
-        [view setBackgroundColor: [NUISettings getColor:@"background-color" withClass: className]];
+               [view setBackgroundColor: [NUISettings getColor:@"background-color" withClass: className]];
     }
+    if ([NUISettings hasProperty:@"tint-color" withClass:className]) {
+        [view setBackgroundColor: [NUISettings getColor:@"tint-color" withClass: className]];
+    }
+
 
     [self renderSize:view withClass:className];
     [self renderBorder:view withClass:className];
