@@ -14,6 +14,7 @@
 #import "NUIButtonRenderer.h"
 #import "NUIControlRenderer.h"
 #import "NUILabelRenderer.h"
+#import "NUIImageRenderer.h"
 #import "NUINavigationBarRenderer.h"
 #import "NUINavigationItemRenderer.h"
 #import "NUIProgressViewRenderer.h"
@@ -50,6 +51,9 @@
 + (void)renderLabel:(UILabel*)label;
 + (void)renderLabel:(UILabel*)label withClass:(NSString*)className;
 + (void)renderLabel:(UILabel*)label withClass:(NSString*)className withSuffix:(NSString*)suffix;
+
++ (void)renderImage:(UIImageView*)imageView;
++ (void)renderImage:(UIImageView*)imageView withClass:(NSString*)className;
 
 + (void)renderNavigationBar:(UINavigationBar*)bar;
 + (void)renderNavigationBar:(UINavigationBar*)bar withClass:(NSString*)className;

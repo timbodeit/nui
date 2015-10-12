@@ -58,6 +58,16 @@ static NUIRenderer *gInstance = nil;
     [NUILabelRenderer render:label withClass:className withSuffix:suffix];
 }
 
++ (void)renderImage:(UIImageView *)imageView
+{
+    [NUIImageRenderer render:imageView withClass:@"Image"];
+}
+
++ (void)renderImage:(UIImageView *)imageView withClass:(NSString *)className
+{
+    [NUIImageRenderer render:imageView withClass:className];
+}
+
 + (void)renderNavigationBar:(UINavigationBar*)bar
 {
     [NUINavigationBarRenderer render:bar withClass:@"NavigationBar"];
