@@ -1,0 +1,3 @@
+coverage_service: coveralls
+xcodeproj: Demo/NUIDemo.xcodeproj
+source_directory: NUI

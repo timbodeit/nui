@@ -5,6 +5,7 @@ NUI
 [![Version](https://img.shields.io/cocoapods/v/NUI.svg?style=flat)](http://cocoapods.org/pods/KeepBackgroundCell)
 [![License](https://img.shields.io/cocoapods/l/NUI.svg?style=flat)](http://cocoapods.org/pods/KeepBackgroundCell)
 [![Platform](https://img.shields.io/cocoapods/p/NUI.svg?style=flat)](http://cocoapods.org/pods/KeepBackgroundCell)
+[![Coverage Status](https://coveralls.io/repos/tombenner/nui/badge.svg?branch=master&service=github)](https://coveralls.io/github/tombenner/nui)
 
 Style iOS apps with a stylesheet, similar to CSS
 

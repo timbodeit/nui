@@ -36,6 +36,9 @@ matrix:
 before_install:
   - export LANG=en_US.UTF-8
   - gem install cocoapods  # Update CocoaPods if needed
-  - cd Demo && pod install
+  - gem install slather
+  - pod install --project-directory=Demo
 script:
-  - xctool -sdk iphonesimulator -workspace NUIDemo.xcworkspace -scheme NUITests -destination "platform=iOS Simulator,name=$DEVICE,OS=$VERSION" clean test
+  - xctool -configuration Debug -sdk iphonesimulator -workspace Demo/NUIDemo.xcworkspace -scheme NUITests -destination "platform=iOS Simulator,name=$DEVICE,OS=$VERSION" clean test
+after_success:
+  - slather
