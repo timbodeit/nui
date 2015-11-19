@@ -36,6 +36,7 @@ matrix:
 before_install:
   - export LANG=en_US.UTF-8
   - gem install cocoapods  # Update CocoaPods if needed
-  - cd Demo && pod install
+  - pod install --project-directory=Demo
 script:
-  - xctool -sdk iphonesimulator -workspace NUIDemo.xcworkspace -scheme NUITests -destination "platform=iOS Simulator,name=$DEVICE,OS=$VERSION" clean test
+  - xctool -sdk iphonesimulator -workspace Demo/NUIDemo.xcworkspace -scheme NUITests -destination "platform=iOS Simulator,name=$DEVICE,OS=$VERSION" clean test
+  - pod lib lint
