@@ -6,14 +6,14 @@
 //  Copyright (c) 2014 Tom Benner. All rights reserved.
 //
 
-#import <XCTest/XCTest.h>
+#import "FlushingTestCase.h"
 
 #import "UIButton+NUI.h"
 #import <UIImage+Compare.h>
 
 static NSString * const NUIButtonBackgroundImageTestsStyleClass = @"ButtonWithBackgroundImage";
 
-@interface NUIButtonRendererBackgroundImageTests : XCTestCase
+@interface NUIButtonRendererBackgroundImageTests : FlushingTestCase
 @property (strong, nonatomic) UIButton *sut;
 @end
 

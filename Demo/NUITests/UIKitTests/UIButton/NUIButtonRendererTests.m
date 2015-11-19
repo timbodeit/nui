@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 Tom Benner. All rights reserved.
 //
 
-#import <XCTest/XCTest.h>
+#import "FlushingTestCase.h"
 
 #import "NUIRenderer.h"
 
-@interface NUIButtonRendererTests : XCTestCase
+@interface NUIButtonRendererTests : FlushingTestCase
 @property (strong, nonatomic) UIButton *sut;
 @end
 

@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 Tom Benner. All rights reserved.
 //
 
-#import <XCTest/XCTest.h>
+#import "FlushingTestCase.h"
 
 #import "NUIRenderer.h"
 
-@interface UIBarButtonRendererBackgroundColorTests : XCTestCase
+@interface UIBarButtonRendererBackgroundColorTests : FlushingTestCase
 @property (strong, nonatomic) UIBarButtonItem *sut;
 @end
 

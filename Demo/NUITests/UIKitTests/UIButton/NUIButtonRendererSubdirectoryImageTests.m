@@ -6,14 +6,14 @@
 //  Copyright (c) 2014 John McIntosh. All rights reserved.
 //
 
-#import <XCTest/XCTest.h>
+#import "FlushingTestCase.h"
 
 #import "UIButton+NUI.h"
 #import <UIImage+Compare.h>
 
 static NSString * const NUIButtonSubdirectoryImageTestsStyleClass = @"ButtonWithImageFromSubdirectory";
 
-@interface NUIButtonRendererSubdirectoryImageTests : XCTestCase
+@interface NUIButtonRendererSubdirectoryImageTests : FlushingTestCase
 @property (strong, nonatomic) UIButton *sut;
 @end
 

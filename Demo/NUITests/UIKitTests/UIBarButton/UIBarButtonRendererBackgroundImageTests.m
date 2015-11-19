@@ -6,14 +6,14 @@
 //  Copyright (c) 2014 Tom Benner. All rights reserved.
 //
 
-#import <XCTest/XCTest.h>
+#import "FlushingTestCase.h"
 
 #import "NUIRenderer.h"
 #import <FBSnapshotTestCase/UIImage+Compare.h>
 
 static NSString * const NUIBarButtonBackgroundImageTestsStyleClass = @"BarButtonWithBackgroundImage";
 
-@interface UIBarButtonRendererBackgroundImageTests : XCTestCase
+@interface UIBarButtonRendererBackgroundImageTests : FlushingTestCase
 @property (strong, nonatomic) UIBarButtonItem *sut;
 @end
 

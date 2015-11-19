@@ -6,14 +6,14 @@
 //  Copyright (c) 2014 Tom Benner. All rights reserved.
 //
 
-#import <XCTest/XCTest.h>
+#import "FlushingTestCase.h"
 
 #import "UIButton+NUI.h"
 #import "NUIRenderer.h"
 
 static NSString * const NUIButtonBackgroundColorTestsStyleClass = @"ButtonWithColor";
 
-@interface NUIButtonRendererBackgroundColorTests : XCTestCase
+@interface NUIButtonRendererBackgroundColorTests : FlushingTestCase
 @property (strong, nonatomic) UIButton *sut;
 @end
 
