@@ -19,13 +19,14 @@
     if (cell.textLabel != nil) {
         [cell.textLabel setBackgroundColor:[UIColor clearColor]];
         // Set Font
-        [NUIRenderer renderLabel:cell.textLabel withClass:className];
+        [NUIRenderer renderView:cell.textLabel withClass:className];
     }
     
     if (cell.detailTextLabel != nil) {
         [cell.detailTextLabel setBackgroundColor:[UIColor clearColor]];
         // Set font
-        [NUIRenderer renderLabel:cell.detailTextLabel withClass:className withSuffix:@"Detail"];
+        NSString* nuiClass = [className stringByAppendingString:@"Detail"];
+        [NUIRenderer renderView:cell.textLabel withClass:nuiClass];
     }
     
 }

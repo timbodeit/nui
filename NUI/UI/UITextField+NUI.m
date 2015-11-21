@@ -21,7 +21,7 @@
 {
     [self initNUI];
     if ([self nuiShouldBeApplied]) {
-        [NUIRenderer renderTextField:self withClass:self.nuiClass];
+        [NUIRenderer renderView:self withClass:self.nuiClass];
     }
     self.nuiApplied = YES;
 }

@@ -38,66 +38,19 @@
 
 + (void)rerender;
 
-+ (void)renderBarButtonItem:(UIBarButtonItem*)item;
-+ (void)renderBarButtonItem:(UIBarButtonItem*)item withClass:(NSString*)className;
+/**
+ *  Allows setting a custom renderer for a nui compatible class or one of its subclasses.
+ *  To render a view or item, a renderer is chosen by objectClass.
+ *  The one which is the closest ancestor is selected.
+ *
+ *  For example, a renderer for UIButton takes precedence over one for UIControl.
+ *
+ *  @param rendererClass The class to render the view. Must provide `+render:withClass:` method.
+ *  @param objectClass   The nui compatible class to apply this renderer to.
+ */
++ (void)setRenderer:(Class)rendererClass forObjectClass:(Class)objectClass;
 
-+ (void)renderButton:(UIButton*)button;
-+ (void)renderButton:(UIButton*)button withClass:(NSString*)className;
-
-+ (void)renderControl:(UIControl*)control;
-+ (void)renderControl:(UIControl*)control withClass:(NSString*)className;
-
-+ (void)renderLabel:(UILabel*)label;
-+ (void)renderLabel:(UILabel*)label withClass:(NSString*)className;
-+ (void)renderLabel:(UILabel*)label withClass:(NSString*)className withSuffix:(NSString*)suffix;
-
-+ (void)renderNavigationBar:(UINavigationBar*)bar;
-+ (void)renderNavigationBar:(UINavigationBar*)bar withClass:(NSString*)className;
-
-+ (void)renderNavigationItem:(UINavigationItem*)item;
-+ (void)renderNavigationItem:(UINavigationItem*)item withClass:(NSString*)className;
-
-+ (void)renderProgressView:(UIProgressView*)progressView;
-+ (void)renderProgressView:(UIProgressView*)progressView withClass:(NSString*)className;
-
-+ (void)renderSearchBar:(UISearchBar*)bar;
-+ (void)renderSearchBar:(UISearchBar*)bar withClass:(NSString*)className;
-
-+ (void)renderSegmentedControl:(UISegmentedControl*)control;
-+ (void)renderSegmentedControl:(UISegmentedControl*)control withClass:(NSString*)className;
-
-+ (void)renderSlider:(UISlider*)slider;
-+ (void)renderSlider:(UISlider*)slider withClass:(NSString*)className;
-
-+ (void)renderSwitch:(UISwitch*)uiSwitch;
-+ (void)renderSwitch:(UISwitch*)uiSwitch withClass:(NSString*)className;
-
-+ (void)renderTabBar:(UITabBar*)bar;
-+ (void)renderTabBar:(UITabBar*)bar withClass:(NSString*)className;
-
-+ (void)renderTabBarItem:(UITabBarItem*)bar;
-+ (void)renderTabBarItem:(UITabBarItem*)bar withClass:(NSString*)className;
-
-+ (void)renderTableView:(UITableView*)tableView;
-+ (void)renderTableView:(UITableView*)tableView withClass:(NSString*)className;
-
-+ (void)renderTableViewCell:(UITableViewCell*)cell;
-+ (void)renderTableViewCell:(UITableViewCell*)cell withClass:(NSString*)className;
-
-+ (void)renderToolbar:(UIToolbar*)bar;
-+ (void)renderToolbar:(UIToolbar*)bar withClass:(NSString*)className;
-
-+ (void)renderTextField:(UITextField*)textField;
-+ (void)renderTextField:(UITextField*)textField withClass:(NSString*)className;
-
-+ (void)renderTextView:(UITextView*)textView;
-+ (void)renderTextView:(UITextView*)textView withClass:(NSString*)className;
-
-+ (void)renderView:(UIView*)view;
-+ (void)renderView:(UIView*)view withClass:(NSString*)className;
-
-+ (void)renderWindow:(UIWindow*)window;
-+ (void)renderWindow:(UIWindow*)window withClass:(NSString*)className;
++ (void)renderView:(id)view withClass:(NSString*)className;
 
 + (BOOL)needsTextTransformWithClass:(NSString*)className;
 + (NSString *)transformText:(NSString*)text withClass:(NSString*)className;

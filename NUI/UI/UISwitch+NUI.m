@@ -24,7 +24,7 @@
     if ([self isMemberOfClass:[UISwitch class]] || self.nuiClass) {
         [self initNUI];
         if (![self.nuiClass isEqualToString:kNUIClassNone]) {
-            [NUIRenderer renderSwitch:self withClass:self.nuiClass];
+            [NUIRenderer renderView:self withClass:self.nuiClass];
         }
     }
     self.nuiApplied = YES;

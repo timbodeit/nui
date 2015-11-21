@@ -14,7 +14,7 @@
     if ([self isMemberOfClass:[UITextView class]] || self.nuiClass) {
         [self initNUI];
         if (![self.nuiClass isEqualToString:kNUIClassNone]) {
-            [NUIRenderer renderTextView:self withClass:self.nuiClass];
+            [NUIRenderer renderView:self withClass:self.nuiClass];
         }
     }
     self.nuiApplied = YES;

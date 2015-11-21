@@ -28,7 +28,7 @@
     {
         [self initNUI];
         if (![self.nuiClass isEqualToString:kNUIClassNone]) {
-            [NUIRenderer renderLabel:self withClass:self.nuiClass];
+            [NUIRenderer renderView:self withClass:self.nuiClass];
             [self transformText];
         }
     }

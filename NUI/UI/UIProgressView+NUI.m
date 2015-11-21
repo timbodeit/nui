@@ -23,7 +23,7 @@
         
         [self initNUI];
         if (![self.nuiClass isEqualToString:kNUIClassNone]) {
-            [NUIRenderer renderProgressView:self withClass:self.nuiClass];
+            [NUIRenderer renderView:self withClass:self.nuiClass];
         }
     }
     

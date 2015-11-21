@@ -21,7 +21,7 @@
 {
     [self initNUI];
     if (![self.nuiClass isEqualToString:kNUIClassNone]) {
-        [NUIRenderer renderToolbar:self withClass:self.nuiClass];
+        [NUIRenderer renderView:self withClass:self.nuiClass];
         
         for (UIBarButtonItem *barButtonItem in [self items]) {
             [barButtonItem applyNUI];

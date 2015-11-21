@@ -13,209 +13,86 @@
 
 static NUIRenderer *gInstance = nil;
 
-+ (void)renderBarButtonItem:(UIBarButtonItem*)item
+static NSMutableDictionary *_renderersForClasses;
+
++(NSMutableDictionary*)renderersForClasses
 {
-    [NUIBarButtonItemRenderer render:item withClass:@"BarButton"];
+  if (!_renderersForClasses) {
+    _renderersForClasses =
+        @{ (id <NSCopying>)[UIBarButtonItem class]:    [NUIBarButtonItemRenderer class]
+         , (id <NSCopying>)[UIButton class]:           [NUIButtonRenderer class]
+         , (id <NSCopying>)[UIControl class]:          [NUIControlRenderer class]
+         , (id <NSCopying>)[UILabel class]:            [NUILabelRenderer class]
+         , (id <NSCopying>)[UINavigationBar class]:    [NUINavigationBarRenderer class]
+         , (id <NSCopying>)[UIProgressView class]:     [NUIProgressViewRenderer class]
+         , (id <NSCopying>)[UINavigationItem class]:   [NUINavigationItemRenderer class]
+         , (id <NSCopying>)[UISearchBar class]:        [NUISearchBarRenderer class]
+         , (id <NSCopying>)[UISegmentedControl class]: [NUISegmentedControlRenderer class]
+         , (id <NSCopying>)[UISlider class]:           [NUISliderRenderer class]
+         , (id <NSCopying>)[UISwitch class]:           [NUISwitchRenderer class]
+         , (id <NSCopying>)[UITabBar class]:           [NUITabBarRenderer class]
+         , (id <NSCopying>)[UITabBarItem class]:       [NUITabBarItemRenderer class]
+         , (id <NSCopying>)[UITableView class]:        [NUITableViewRenderer class]
+         , (id <NSCopying>)[UITableViewCell class]:    [NUITableViewCellRenderer class]
+         , (id <NSCopying>)[UIToolbar class]:          [NUIToolbarRenderer class]
+         , (id <NSCopying>)[UITextField class]:        [NUITextFieldRenderer class]
+         , (id <NSCopying>)[UITextView class]:         [NUITextViewRenderer class]
+         , (id <NSCopying>)[UIView class]:             [NUIViewRenderer class]
+         , (id <NSCopying>)[UIWindow class]:           [NUIWindowRenderer class]
+         }.mutableCopy;
+  }
+  return _renderersForClasses;
 }
 
-+ (void)renderBarButtonItem:(UIBarButtonItem*)item withClass:(NSString*)className
++(void)setRenderer:(Class)rendererClass forObjectClass:(Class)objectClass
 {
-    [NUIBarButtonItemRenderer render:item withClass:className];
+  [[self renderersForClasses] setObject:rendererClass
+                                 forKey:(id<NSCopying>)objectClass];
 }
 
-+ (void)renderButton:(UIButton*)button
+BOOL classDescendsFromClass(Class classA, Class classB)
 {
-    [NUIButtonRenderer render:button withClass:@"Button"];
+  while(classA)
+  {
+    if(classA == classB) return YES;
+    classA = class_getSuperclass(classA);
+  }
+  
+  return NO;
 }
 
-+ (void)renderButton:(UIButton*)button withClass:(NSString*)className
-{
-    [NUIButtonRenderer render:button withClass:className];
++ (Class)rendererForClass: (Class)class {
+  __block Class returnValue;
+  NSDictionary* renderersForClasses = [self renderersForClasses];
+  [renderersForClasses enumerateKeysAndObjectsUsingBlock:^(Class _Nonnull key, Class _Nonnull obj, BOOL * _Nonnull stop) {
+    if (!classDescendsFromClass(class, key)) {
+      // Renderer object class is not a superclass of class
+      return;
+    }
+    for (Class key2 in renderersForClasses) {
+      if (classDescendsFromClass(key2, key) &&
+          classDescendsFromClass(class, key2) &&
+          key2 != key) {
+        // There is another object class that is more specific
+        return;
+      }
+    }
+    // key is the most specific object class for which a renderer has been specified
+    returnValue = obj;
+    *stop = YES;
+  }];
+  return returnValue;
 }
 
-+ (void)renderControl:(UIControl*)control
++ (void)renderView:(id)view
 {
-    [NUIControlRenderer render:control withClass:@"Control"];
+  [self renderView:view withClass:nil];
 }
 
-+ (void)renderControl:(UIControl*)control withClass:(NSString*)className
++ (void)renderView:(id)view withClass:(NSString*)className
 {
-    [NUIControlRenderer render:control withClass:className];
-}
-
-+ (void)renderLabel:(UILabel*)label
-{
-    [NUILabelRenderer render:label withClass:@"Label"];
-}
-
-+ (void)renderLabel:(UILabel*)label withClass:(NSString*)className
-{
-    [NUILabelRenderer render:label withClass:className];
-}
-
-+ (void)renderLabel:(UILabel*)label withClass:(NSString*)className withSuffix:(NSString*)suffix
-{
-    [NUILabelRenderer render:label withClass:className withSuffix:suffix];
-}
-
-+ (void)renderNavigationBar:(UINavigationBar*)bar
-{
-    [NUINavigationBarRenderer render:bar withClass:@"NavigationBar"];
-}
-
-+ (void)renderNavigationBar:(UINavigationBar*)bar withClass:(NSString*)className
-{
-    [NUINavigationBarRenderer render:bar withClass:className];
-}
-
-+ (void)renderProgressView:(UIProgressView*)progressView
-{
-    [NUIProgressViewRenderer render:progressView];
-}
-
-+ (void)renderProgressView:(UIProgressView*)progressView withClass:(NSString*)className
-{
-    [NUIProgressViewRenderer render:progressView withClass:className];
-}
-
-+ (void)renderNavigationItem:(UINavigationItem *)item
-{
-    [NUINavigationItemRenderer render:item withClass:@"NavigationBar"];
-}
-
-+ (void)renderNavigationItem:(UINavigationItem*)item withClass:(NSString*)className
-{
-    [NUINavigationItemRenderer render:item withClass:className];
-}
-
-+ (void)renderSearchBar:(UISearchBar*)bar
-{
-    [NUISearchBarRenderer render:bar withClass:@"SearchBar"];
-}
-
-+ (void)renderSearchBar:(UISearchBar*)bar withClass:(NSString*)className
-{
-    [NUISearchBarRenderer render:bar withClass:className];
-}
-
-+ (void)renderSegmentedControl:(UISegmentedControl*)control
-{
-    [NUISegmentedControlRenderer render:control withClass:@"SegmentedControl"];
-}
-
-+ (void)renderSegmentedControl:(UISegmentedControl*)control withClass:(NSString*)className
-{
-    [NUISegmentedControlRenderer render:control withClass:className];
-}
-
-+ (void)renderSlider:(UISlider*)slider
-{
-    [NUISliderRenderer render:slider withClass:@"Slider"];
-}
-
-+ (void)renderSlider:(UISlider*)slider withClass:(NSString*)className
-{
-    [NUISliderRenderer render:slider withClass:className];
-}
-
-+ (void)renderSwitch:(UISwitch*)uiSwitch
-{
-    [NUISwitchRenderer render:uiSwitch withClass:@"Switch"];
-}
-
-+ (void)renderSwitch:(UISwitch*)uiSwitch withClass:(NSString*)className
-{
-    [NUISwitchRenderer render:uiSwitch withClass:className];
-}
-
-+ (void)renderTabBar:(UITabBar*)bar
-{
-    [NUITabBarRenderer render:bar withClass:@"TabBar"];
-}
-
-+ (void)renderTabBar:(UITabBar*)bar withClass:(NSString*)className
-{
-    [NUITabBarRenderer render:bar withClass:className];
-}
-
-+ (void)renderTabBarItem:(UITabBarItem*)item
-{
-    [NUITabBarItemRenderer render:item withClass:@"TabBarItem"];
-}
-
-+ (void)renderTabBarItem:(UITabBarItem*)item withClass:(NSString*)className
-{
-    [NUITabBarItemRenderer render:item withClass:className];
-}
-
-+ (void)renderTableView:(UITableView*)tableView
-{
-    [NUITableViewRenderer render:tableView withClass:@"Table"];
-}
-
-+ (void)renderTableView:(UITableView*)tableView withClass:(NSString*)className
-{
-    [NUITableViewRenderer render:tableView withClass:className];
-}
-
-+ (void)renderTableViewCell:(UITableViewCell*)cell
-{
-    [NUITableViewCellRenderer render:cell withClass:@"TableCell"];
-}
-
-+ (void)renderTableViewCell:(UITableViewCell*)cell withClass:(NSString*)className
-{
-    [NUITableViewCellRenderer render:cell withClass:className];
-}
-
-+ (void)renderToolbar:(UIToolbar*)bar
-{
-    [NUIToolbarRenderer render:bar withClass:@"Toolbar"];
-}
-
-+ (void)renderToolbar:(UIToolbar*)bar withClass:(NSString*)className
-{
-    [NUIToolbarRenderer render:bar withClass:className];
-}
-
-+ (void)renderTextField:(UITextField*)textField
-{
-    [NUITextFieldRenderer render:textField withClass:@"TextField"];
-}
-
-+ (void)renderTextField:(UITextField*)textField withClass:(NSString*)className
-{
-    [NUITextFieldRenderer render:textField withClass:className];
-}
-
-+ (void)renderTextView:(UITextView *)textView
-{
-    [NUITextViewRenderer render:textView withClass:@"TextView"];
-}
-
-+ (void)renderTextView:(UITextView *)textView withClass:(NSString *)className
-{
-    [NUITextViewRenderer render:textView withClass:className];
-}
-
-+ (void)renderView:(UIView*)view
-{
-    [NUIViewRenderer render:view withClass:@"View"];
-}
-
-+ (void)renderView:(UIView*)view withClass:(NSString*)className
-{
-    [NUIViewRenderer render:view withClass:className];
-}
-
-+ (void)renderWindow:(UIWindow*)window
-{
-    [NUIWindowRenderer render:window withClass:@"Window"];
-}
-
-+ (void)renderWindow:(UIWindow*)window withClass:(NSString*)className
-{
-    [NUIWindowRenderer render:window withClass:className];
+  Class renderer = [self rendererForClass:[view class]];
+  [renderer render:view withClass:className];
 }
 
 + (BOOL)needsTextTransformWithClass:(NSString*)className

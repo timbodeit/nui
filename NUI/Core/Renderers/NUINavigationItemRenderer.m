@@ -13,13 +13,13 @@
 + (void)render:(UINavigationItem*)item withClass:(NSString*)className
 {
     if (item.backBarButtonItem != nil) {
-        [NUIRenderer renderBarButtonItem:item.backBarButtonItem];
+      [NUIRenderer renderView:item.backBarButtonItem withClass: item.backBarButtonItem.nuiClass];
     }
     if (item.leftBarButtonItem != nil) {
-        [NUIRenderer renderBarButtonItem:item.leftBarButtonItem];
+        [NUIRenderer renderView:item.leftBarButtonItem withClass: item.leftBarButtonItem.nuiClass];
     }
     if (item.rightBarButtonItem != nil) {
-        [NUIRenderer renderBarButtonItem:item.rightBarButtonItem];
+        [NUIRenderer renderView:item.rightBarButtonItem withClass: item.rightBarButtonItem.nuiClass];
     }
 }
 

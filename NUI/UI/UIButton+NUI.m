@@ -41,7 +41,7 @@
         if ((![bypassedClasses containsObject:selfClass] &&
             ![bypassedSuperviewClasses containsObject:superviewClass]) ||
             forceRender) {
-            [NUIRenderer renderButton:self withClass:self.nuiClass];
+            [NUIRenderer renderView:self withClass:self.nuiClass];
             [self transformText];
         }
     }

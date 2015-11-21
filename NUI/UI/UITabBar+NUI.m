@@ -21,7 +21,7 @@
 {
     [self initNUI];
     if (![self.nuiClass isEqualToString:kNUIClassNone]) {
-        [NUIRenderer renderTabBar:self withClass:self.nuiClass];
+        [NUIRenderer renderView:self withClass:self.nuiClass];
         [NUIRenderer addOrientationDidChangeObserver:self];
         
         for (UITabBarItem *item in self.items) {

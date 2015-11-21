@@ -23,7 +23,7 @@
 {
     [self initNUI];
     if (![self.nuiClass isEqualToString:kNUIClassNone]) {
-        [NUIRenderer renderNavigationItem:self withClass:self.nuiClass];
+        [NUIRenderer renderView:self withClass:self.nuiClass];
     }
     self.nuiApplied = YES;
 }
